@@ -1,0 +1,15 @@
+---
+micronaut:
+  application:
+    name: user-list
+
+---
+datasources.default: {}
+---
+micronaut:
+  router:
+    static-resources:
+      default:
+        enabled: true   #<1>
+        mapping: "/**"  #<2>
+        paths: "classpath:public" #<3>

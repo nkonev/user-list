@@ -1,0 +1,5 @@
+profile: service
+defaultPackage: user.list
+---
+testFramework: kotlintest
+sourceLanguage: kotlin
