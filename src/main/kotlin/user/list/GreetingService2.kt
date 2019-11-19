@@ -18,7 +18,7 @@ class GreetingService2 {
     }
 
     fun getHello(name: String): String {
-        return "Hello, \$name!"
+        return "Hello, $name!"
     }
 
 }
