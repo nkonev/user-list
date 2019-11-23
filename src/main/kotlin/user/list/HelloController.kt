@@ -35,7 +35,8 @@ open class HelloController {
 
     @Get("/")
     @Produces(MediaType.TEXT_PLAIN)
-    fun index(): String {
-        return "Hello World"
+    fun index(): List<Book> {
+        val findByPagesGreaterThan = r.findByPagesGreaterThan(90)
+        return findByPagesGreaterThan
     }
 }

@@ -7,4 +7,5 @@ import io.micronaut.data.repository.CrudRepository
 @JdbcRepository
 interface BookRepository: CrudRepository<Book, Long> {
     fun find(name: String): Book
+    fun findByPagesGreaterThan(pageCount: Int): List<Book>
 }
