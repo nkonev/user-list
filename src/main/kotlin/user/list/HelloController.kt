@@ -28,7 +28,7 @@ open class HelloController {
     @Produces(MediaType.TEXT_PLAIN)
     @Get("/{name}")
     fun hello(name: String): HttpResponse<String> {
-        var b : Book = Book(id = null, title = name, pages = 100)
+        var b : Book = Book(name = name, pages = 100, id = null)
         r.save(b)
         return HttpResponse.ok(g.getHello(name))
     }

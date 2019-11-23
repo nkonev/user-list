@@ -8,13 +8,16 @@ micronaut:
 
 datasources:
   default:
-    url: jdbc:postgresql://172.22.0.2:5432/blog?connectTimeout=10&socketTimeout=40
+    url: jdbc:postgresql://172.22.0.2:5432/user_list?connectTimeout=10&socketTimeout=40
     username: blog
     password: blogPazZw0rd
     maxSize: 5
     dialect: POSTGRES
 
-
+flyway:
+  datasources:
+    default:
+      locations: classpath:databasemigrations
 ---
 micronaut:
   router:
