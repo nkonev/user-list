@@ -10,7 +10,7 @@ class GreetingService2 {
     private val LOG = loggerFor(javaClass)
 
     @Inject
-    private lateinit var b :Book
+    private lateinit var b :Book0
 
     @PostConstruct
     fun pc() {
