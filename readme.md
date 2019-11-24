@@ -7,6 +7,8 @@ rm dependency micronaut-client which uses reactive-java
 https://guides.micronaut.io/micronaut-spa-react/guide/
 
 # Configure IDE
+https://docs.micronaut.io/latest/guide/index.html#kaptintellij
+
 ![Use gradle](./images/use_gradle.png)
 ![Add gradle task before](./images/add_clean.png)
 

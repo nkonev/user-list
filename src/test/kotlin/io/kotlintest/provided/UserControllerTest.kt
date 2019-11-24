@@ -1,0 +1,24 @@
+package io.kotlintest.provided
+
+import io.micronaut.http.HttpRequest
+import io.micronaut.http.client.RxHttpClient
+import io.micronaut.http.client.annotation.Client
+import io.micronaut.test.annotation.MicronautTest
+import org.junit.jupiter.api.Assertions.assertNotNull
+import org.junit.jupiter.api.Test
+import user.list.UserDto
+import javax.inject.Inject
+
+@MicronautTest
+open class UserControllerTest{
+    @Inject
+    @field:Client("/")
+    var client: RxHttpClient? = null
+
+    @Test
+    open fun testPostUser() {
+        val result: UserDto = client!!.toBlocking()
+                .retrieve(HttpRequest.POST<UserDto>("/user", UserDto(id=0, name = "Nikita", surname = "Konev")), UserDto::class.java)
+        assertNotNull(result.id)
+    }
+}
