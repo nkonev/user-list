@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import {SERVER_URL} from "./config";
+import axios from 'axios'
 
 class App extends Component {
 
@@ -17,10 +18,12 @@ class App extends Component {
 
     getMessage = e => {
         e.preventDefault();
-        fetch(`${SERVER_URL}/hello/${this.state.name}`)
-            .then(r => r.text())
-            .then(message => this.setState({message}))
-            .catch(e => console.error(e))
+        axios.get(`${SERVER_URL}/hello/${this.state.name}`)
+            .then(message => {
+                const m = message.data;
+                this.setState({message: m});
+            })
+
     };
 
     render() {
