@@ -7,6 +7,15 @@ import java.util.*
 import javax.annotation.PostConstruct
 import javax.inject.Inject
 
+@Controller
+open class HelloController {
+    @Get("/hello/{name}")
+    @Produces(MediaType.APPLICATION_JSON)
+    fun readById(@Part("name") name: String): String {
+        return "Hello, " + name
+    }
+
+}
 
 @Controller("/user")
 open class UserController {

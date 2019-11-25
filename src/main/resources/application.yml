@@ -19,7 +19,18 @@ flyway:
     default:
       locations: classpath:databasemigrations
 ---
+
+
 micronaut:
+  server:
+    cors:
+      enabled: true
+      configurations:
+        web:
+          allowedOrigins:
+            - http://localhost:3000
+            - http://localhost:8080
+
   router:
     static-resources:
       default:
