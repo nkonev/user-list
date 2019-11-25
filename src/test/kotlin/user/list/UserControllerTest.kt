@@ -1,7 +1,7 @@
 package user.list
 
 import io.micronaut.http.HttpRequest
-import io.micronaut.http.client.RxHttpClient
+import io.micronaut.http.client.HttpClient
 import io.micronaut.http.client.annotation.Client
 import io.micronaut.test.annotation.MicronautTest
 import org.junit.jupiter.api.Assertions.assertNotNull
@@ -12,7 +12,7 @@ import javax.inject.Inject
 open class UserControllerTest{
     @Inject
     @field:Client("/")
-    var client: RxHttpClient? = null
+    var client: HttpClient? = null
 
     @Test
     open fun testPostUser() {
