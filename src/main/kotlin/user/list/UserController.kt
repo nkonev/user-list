@@ -18,7 +18,7 @@ open class UserController {
 
     @PostConstruct
     fun pc() {
-        LOG.info("HelloController")
+        LOG.info("UserController2")
     }
 
     @Produces(MediaType.APPLICATION_JSON)

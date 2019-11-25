@@ -1,4 +1,4 @@
-package io.kotlintest.provided
+package user.list
 
 import io.micronaut.http.HttpRequest
 import io.micronaut.http.client.RxHttpClient
@@ -6,7 +6,6 @@ import io.micronaut.http.client.annotation.Client
 import io.micronaut.test.annotation.MicronautTest
 import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Test
-import user.list.UserDto
 import javax.inject.Inject
 
 @MicronautTest
