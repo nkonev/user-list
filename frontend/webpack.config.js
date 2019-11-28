@@ -3,12 +3,12 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CssExtractPlugin = require('mini-css-extract-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
-const PRODUCTION_ENV = 'production';
+const contentBase = path.join(__dirname, "/dist");
 
 module.exports = {
     entry: "./src/index.js",
     output: {
-        path: path.join(__dirname, "/dist"),
+        path: contentBase,
         filename: "index-bundle.js"
     },
     module: {
@@ -80,7 +80,7 @@ module.exports = {
         }),
     ],
     devServer: {
-        contentBase: path.join(__dirname, 'dist'),
+        contentBase: contentBase,
         compress: true,
         port: 3000
     }
