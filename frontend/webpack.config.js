@@ -42,7 +42,19 @@ module.exports = {
                         },
                     },
                 ],
-            }
+            },
+            {
+                test: /\.(ttf|eot|woff|woff2)$/,
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options: {
+                            name: '[path][name].[ext]',
+                            limit: '4096'
+                        }
+                    }
+                ],
+            },
         ]
     },
     plugins: [
