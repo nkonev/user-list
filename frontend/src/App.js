@@ -7,16 +7,11 @@ import axios from 'axios'
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import Divider from '@material-ui/core/Divider';
-import InboxIcon from '@material-ui/icons/Inbox';
-import DraftsIcon from '@material-ui/icons/Drafts';
 
 const useStyles = makeStyles(theme => ({
     root: {
         width: '100%',
-        maxWidth: 360,
         backgroundColor: theme.palette.background.paper,
     },
 }));
@@ -25,10 +20,10 @@ function ListItemLink(props) {
     return <ListItem button component="a" {...props} />;
 }
 
-
 function App() {
     const [name, setName] = useState('World');
     const [message, setMessage] = useState(null);
+    const classes = useStyles();
 
     let setNameF = e => {
         e.preventDefault();
@@ -46,23 +41,19 @@ function App() {
 
     return (
         <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo"/>
-                {/* <4> */}
-                <form onSubmit={setMessageF}>
-                    <label>Enter your name: </label>
-                    <input type="text" value={name} onChange={setNameF}/>
-                    <input type="submit" value="Submit"/>
-                </form>
-
-                {/* <5> */}
-                <p>
-                    {message ?
-                        <strong>{message}</strong> :
-                        <span>Edit <code>src/App.js</code> and save to reload.</span>
-                    }
-                </p>
-            </header>
+            <div className={classes.root}>
+                <header className="App-header">
+                    <img src={logo} className="App-logo" alt="logo"/>
+                </header>
+                <List component="nav" aria-label="secondary mailbox folders">
+                    <ListItem button>
+                        <ListItemText primary="Nikita Konev" />
+                    </ListItem>
+                    <ListItemLink href="#simple-list">
+                        <ListItemText primary="Konev Nikita" />
+                    </ListItemLink>
+                </List>
+            </div>
         </div>
     );
 }
