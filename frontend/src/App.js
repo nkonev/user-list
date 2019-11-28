@@ -1,4 +1,4 @@
-import React, {Component, useState } from 'react';
+import React, {Component, useState, useEffect} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import {SERVER_URL} from "./config";
@@ -16,28 +16,24 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-function ListItemLink(props) {
-    return <ListItem button component="a" {...props} />;
-}
-
 function App() {
-    const [name, setName] = useState('World');
-    const [message, setMessage] = useState(null);
+    // state
+    const [users, setUsers] = useState([]);
+
+    useEffect(() => {
+        const fetchData = () => {
+            console.log("before get");
+            axios.get(`${SERVER_URL}/user`)
+                .then(message => {
+                    const m = message.data;
+                    setUsers(m);
+                });
+        };
+
+        fetchData();
+    }, []);
+
     const classes = useStyles();
-
-    let setNameF = e => {
-        e.preventDefault();
-        setName(e.target.value);
-    };
-
-    let setMessageF = e => {
-        e.preventDefault();
-        axios.get(`${SERVER_URL}/hello/${name}`)
-            .then(message => {
-                const m = message.data;
-                setMessage(m);
-            })
-    };
 
     return (
         <div className="App">
@@ -46,12 +42,13 @@ function App() {
                     <img src={logo} className="App-logo" alt="logo"/>
                 </header>
                 <List component="nav" aria-label="secondary mailbox folders">
-                    <ListItem button>
-                        <ListItemText primary="Nikita Konev" />
-                    </ListItem>
-                    <ListItemLink href="#simple-list">
-                        <ListItemText primary="Konev Nikita" />
-                    </ListItemLink>
+                    {users.map((value, index) => {
+                        return (
+                            <ListItem key={value.id}>
+                                <ListItemText primary={value.name + ' '+ value.surname} />
+                            </ListItem>
+                        )
+                    })}
                 </List>
             </div>
         </div>
