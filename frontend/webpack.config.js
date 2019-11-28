@@ -1,6 +1,10 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CssExtractPlugin = require('mini-css-extract-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+
+const PRODUCTION_ENV = 'production';
+
 module.exports = {
     entry: "./src/index.js",
     output: {
@@ -58,6 +62,12 @@ module.exports = {
         ]
     },
     plugins: [
+        new CleanWebpackPlugin({
+            watch: false,
+            dangerouslyAllowCleanPatternsOutsideProject: true,
+            verbose: true,
+            dry: false
+        }),
         new HtmlWebpackPlugin({
             template: "./public/index.html"
         }),
