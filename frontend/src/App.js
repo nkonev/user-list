@@ -10,6 +10,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
+import TextField from '@material-ui/core/TextField';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -97,12 +98,12 @@ function App() {
                         return (
                             <ListItem key={value.id}>
 
-                                <Grid container spacing={1} row>
+                                <Grid container spacing={1} direction="row">
                                     <Grid item xs>
                                         <ListItemText primary={value.name + ' '+ value.surname} />
                                     </Grid>
 
-                                    <Grid container xs={2} direction="row"
+                                    <Grid container item xs={2} direction="row"
                                           justify="flex-end"
                                           alignItems="center" spacing={1}>
                                         <Grid item>
@@ -130,10 +131,15 @@ function App() {
                 onClose={handleClose}
             >
                 <div style={modalStyle} className={modalClasses.paper}>
-                    <h2 id="simple-modal-title">Text in a modal</h2>
-                    <p id="simple-modal-description">
-                        Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-                    </p>
+                    <h2 id="simple-modal-title">Update user</h2>
+                    <Grid container spacing={1}>
+                        <Grid item>
+                    <TextField id="outlined-basic" label="Name" variant="outlined" />
+                        </Grid>
+                        <Grid item>
+                    <TextField id="outlined-basic" label="Surname" variant="outlined" />
+                        </Grid>
+                    </Grid>
                 </div>
             </Modal>
         </div>
