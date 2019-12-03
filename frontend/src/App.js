@@ -140,6 +140,9 @@ function App() {
                     <TextField id="outlined-basic" label="Surname" variant="outlined" />
                         </Grid>
                     </Grid>
+                    <Button variant="contained" color="primary">
+                        Primary
+                    </Button>
                 </div>
             </Modal>
         </div>
