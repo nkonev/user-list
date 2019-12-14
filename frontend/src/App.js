@@ -11,12 +11,21 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
 
 const useStyles = makeStyles(theme => ({
     root: {
         width: '100%',
         backgroundColor: theme.palette.background.paper,
     },
+    fabButton: {
+        position: 'absolute',
+        zIndex: 1,
+        bottom: 30,
+        right: 30,
+        margin: '0 auto',
+    }
 }));
 
 function getModalStyle() {
@@ -120,6 +129,10 @@ function App() {
                         )
                     })}
                 </List>
+
+                <Fab color="primary" aria-label="add" className={classes.fabButton}>
+                    <AddIcon />
+                </Fab>
             </div>
 
             <Modal
