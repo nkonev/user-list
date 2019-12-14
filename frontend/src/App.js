@@ -4,7 +4,7 @@ import './App.css';
 import {SERVER_URL} from "./config";
 import axios from 'axios'
 import Modal from '@material-ui/core/Modal';
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -19,13 +19,9 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-function rand() {
-    return Math.round(Math.random() * 20) - 10;
-}
-
 function getModalStyle() {
-    const top = 50 + rand();
-    const left = 50 + rand();
+    const top = 50;
+    const left = 50;
 
     return {
         top: `${top}%`,
@@ -41,7 +37,7 @@ const useModalStyles = makeStyles(theme => ({
         backgroundColor: theme.palette.background.paper,
         border: '2px solid #000',
         boxShadow: theme.shadows[5],
-        padding: theme.spacing(2, 4, 3),
+        padding: theme.spacing(2),
     },
 }));
 
@@ -100,21 +96,23 @@ function App() {
 
                                 <Grid container spacing={1} direction="row">
                                     <Grid item xs>
-                                        <ListItemText primary={value.name + ' '+ value.surname} />
+                                        <ListItemText primary={value.name + ' ' + value.surname}/>
                                     </Grid>
 
                                     <Grid container item xs={2} direction="row"
                                           justify="flex-end"
                                           alignItems="center" spacing={1}>
                                         <Grid item>
-                                        <Button variant="contained" color="primary" onClick={() => handleOpen(value.id)}>
-                                            Edit
-                                        </Button>
+                                            <Button variant="contained" color="primary"
+                                                    onClick={() => handleOpen(value.id)}>
+                                                Edit
+                                            </Button>
                                         </Grid>
                                         <Grid item>
-                                        <Button variant="contained" color="secondary" onClick={() => onDelete(value.id)}>
-                                            Delete
-                                        </Button>
+                                            <Button variant="contained" color="secondary"
+                                                    onClick={() => onDelete(value.id)}>
+                                                Delete
+                                            </Button>
                                         </Grid>
                                     </Grid>
                                 </Grid>
@@ -131,18 +129,38 @@ function App() {
                 onClose={handleClose}
             >
                 <div style={modalStyle} className={modalClasses.paper}>
-                    <h2 id="simple-modal-title">Update user</h2>
-                    <Grid container spacing={1}>
+
+                    <Grid container
+                          direction="column"
+                          justify="center"
+                          alignItems="stretch"
+                          spacing={2}>
                         <Grid item>
-                    <TextField id="outlined-basic" label="Name" variant="outlined" />
+                            <span>Update user</span>
                         </Grid>
-                        <Grid item>
-                    <TextField id="outlined-basic" label="Surname" variant="outlined" />
+                        <Grid item container spacing={1} direction="column" justify="center"
+                              alignItems="stretch">
+                            <Grid item>
+                                <TextField id="outlined-basic" label="Name" variant="outlined" fullWidth/>
+                            </Grid>
+                            <Grid item>
+                                <TextField id="outlined-basic" label="Surname" variant="outlined" fullWidth/>
+                            </Grid>
+
+                        </Grid>
+                        <Grid item container spacing={1}>
+                            <Grid item>
+                            <Button variant="contained" color="primary">
+                                Save
+                            </Button>
+                            </Grid>
+                            <Grid item>
+                            <Button variant="contained" color="secondary">
+                                Cancel
+                            </Button>
+                            </Grid>
                         </Grid>
                     </Grid>
-                    <Button variant="contained" color="primary">
-                        Primary
-                    </Button>
                 </div>
             </Modal>
         </div>
