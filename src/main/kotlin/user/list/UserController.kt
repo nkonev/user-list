@@ -46,7 +46,7 @@ open class UserController {
     @Get("/")
     @Produces(MediaType.APPLICATION_JSON)
     fun read(): List<UserDto?> {
-        val findResult = r.findAll().map { user: User? -> user?.toUserDto() }.toList()
+        val findResult = r.findAllOrderById().map { user: User? -> user?.toUserDto() }.toList()
         return findResult
     }
 

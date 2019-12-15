@@ -19,7 +19,7 @@ data class UserDto(val id: Long, val surname: String, val name: String){}
 
 @JdbcRepository
 interface UserRepository: CrudRepository<User, Long> {
-
+    fun findAllOrderById(): Iterable<User>
 }
 
 fun User.toUserDto() = UserDto(

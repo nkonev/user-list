@@ -66,25 +66,44 @@ function App() {
 
     const classes = useStyles();
 
-    const onDelete = e => {
-        console.log("Deleting", e);
-        axios.delete(`${SERVER_URL}/user/${e}`)
+    const onDelete = userId => {
+        console.log("Deleting", userId);
+        axios.delete(`${SERVER_URL}/user/${userId}`)
             .then(() => {
                 fetchData();
+            });
+    };
+
+    const onSave = u => {
+        axios.patch(`${SERVER_URL}/user`, u)
+            .then(() => {
+                fetchData();
+                setOpen(false);
             });
     };
 
     // getModalStyle is not a pure function, we roll the style only on the first render
     const [modalStyle] = React.useState(getModalStyle);
     const [open, setOpen] = React.useState(false);
+    const [editDto, setEditDto] = React.useState({});
 
-    const handleOpen = (e) => {
-        console.log("Editing modal", e);
+    const handleOpen = (user) => {
+        console.log("Editing modal", user.id);
+        setEditDto(user);
         setOpen(true);
     };
 
     const handleClose = () => {
+        setEditDto({});
         setOpen(false);
+    };
+
+    const handleChangeName = event => {
+        setEditDto({...editDto, name: event.target.value});
+    };
+
+    const handleChangeSurname = event => {
+        setEditDto({...editDto, surname: event.target.value});
     };
 
 
@@ -109,7 +128,7 @@ function App() {
                                           alignItems="center" spacing={1}>
                                         <Grid item>
                                             <Button variant="contained" color="primary"
-                                                    onClick={() => handleOpen(value.id)}>
+                                                    onClick={() => handleOpen(value)}>
                                                 Edit
                                             </Button>
                                         </Grid>
@@ -150,21 +169,21 @@ function App() {
                         <Grid item container spacing={1} direction="column" justify="center"
                               alignItems="stretch">
                             <Grid item>
-                                <TextField id="outlined-basic" label="Name" variant="outlined" fullWidth/>
+                                <TextField id="outlined-basic" label="Name" variant="outlined" fullWidth value={editDto.name} onChange={handleChangeName}/>
                             </Grid>
                             <Grid item>
-                                <TextField id="outlined-basic" label="Surname" variant="outlined" fullWidth/>
+                                <TextField id="outlined-basic" label="Surname" variant="outlined" fullWidth value={editDto.surname} onChange={handleChangeSurname}/>
                             </Grid>
 
                         </Grid>
                         <Grid item container spacing={1}>
                             <Grid item>
-                            <Button variant="contained" color="primary">
+                            <Button variant="contained" color="primary" onClick={() => onSave(editDto)}>
                                 Save
                             </Button>
                             </Grid>
                             <Grid item>
-                            <Button variant="contained" color="secondary">
+                            <Button variant="contained" color="secondary" onClick={handleClose}>
                                 Cancel
                             </Button>
                             </Grid>
