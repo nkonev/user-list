@@ -36,4 +36,6 @@ micronaut:
       default:
         enabled: true   #<1>
         mapping: "/**"  #<2>
-        paths: "classpath:public" #<3>
+        paths:
+         - "file:./src/main/resources/public"
+         - "classpath:public" #<3>
