@@ -25,7 +25,15 @@ const useStyles = makeStyles(theme => ({
         bottom: 30,
         right: 30,
         margin: '0 auto',
-    }
+    },
+    paper: {
+        position: 'absolute',
+        width: 400,
+        backgroundColor: theme.palette.background.paper,
+        border: '2px solid #000',
+        boxShadow: theme.shadows[5],
+        padding: theme.spacing(2),
+    },
 }));
 
 function getModalStyle() {
@@ -38,17 +46,6 @@ function getModalStyle() {
         transform: `translate(-${top}%, -${left}%)`,
     };
 }
-
-const useModalStyles = makeStyles(theme => ({
-    paper: {
-        position: 'absolute',
-        width: 400,
-        backgroundColor: theme.palette.background.paper,
-        border: '2px solid #000',
-        boxShadow: theme.shadows[5],
-        padding: theme.spacing(2),
-    },
-}));
 
 function App() {
     // state
@@ -77,7 +74,6 @@ function App() {
             });
     };
 
-    const modalClasses = useModalStyles();
     // getModalStyle is not a pure function, we roll the style only on the first render
     const [modalStyle] = React.useState(getModalStyle);
     const [open, setOpen] = React.useState(false);
@@ -141,7 +137,7 @@ function App() {
                 open={open}
                 onClose={handleClose}
             >
-                <div style={modalStyle} className={modalClasses.paper}>
+                <div style={modalStyle} className={classes.paper}>
 
                     <Grid container
                           direction="column"
