@@ -76,7 +76,7 @@ function App() {
     };
 
     const onSave = u => {
-        axios.patch(`${SERVER_URL}/user`, u)
+        (u.id ? axios.patch(`${SERVER_URL}/user`, u) : axios.post(`${SERVER_URL}/user`, u))
             .then(() => {
                 fetchData();
                 setOpen(false);
@@ -145,7 +145,7 @@ function App() {
                     })}
                 </List>
 
-                <Fab color="primary" aria-label="add" className={classes.fabButton}>
+                <Fab color="primary" aria-label="add" className={classes.fabButton} onClick={() => handleOpen({name: '', surname: ''})}>
                     <AddIcon />
                 </Fab>
             </div>
@@ -165,7 +165,7 @@ function App() {
                           alignItems="stretch"
                           spacing={2}>
                         <Grid item>
-                            <span>Update user</span>
+                            <span>{editDto.id ? 'Update user' : 'Create user'}</span>
                         </Grid>
                         <Grid item container spacing={1} direction="column" justify="center"
                               alignItems="stretch">

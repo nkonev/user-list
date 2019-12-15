@@ -38,7 +38,7 @@ open class UserController {
 
     @Produces(MediaType.APPLICATION_JSON)
     @Delete("/{id}")
-    fun update(@Part("id") id: Long): HttpResponse<UserDto> {
+    fun delete(@Part("id") id: Long): HttpResponse<UserDto> {
         r.deleteById(id)
         return HttpResponse.ok()
     }
