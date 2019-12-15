@@ -13,6 +13,7 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
+import Fade from '@material-ui/core/Fade';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -94,7 +95,6 @@ function App() {
     };
 
     const handleClose = () => {
-        setEditDto({});
         setOpen(false);
     };
 
@@ -116,7 +116,7 @@ function App() {
                 <List component="nav" aria-label="secondary mailbox folders">
                     {users.map((value, index) => {
                         return (
-                            <ListItem key={value.id}>
+                            <ListItem key={value.id} button>
 
                                 <Grid container spacing={1} direction="row">
                                     <Grid item xs>
@@ -156,6 +156,7 @@ function App() {
                 open={open}
                 onClose={handleClose}
             >
+                <Fade in={open}>
                 <div style={modalStyle} className={classes.paper}>
 
                     <Grid container
@@ -190,6 +191,7 @@ function App() {
                         </Grid>
                     </Grid>
                 </div>
+                </Fade>
             </Modal>
         </div>
     );
